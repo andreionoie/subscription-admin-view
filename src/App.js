@@ -157,7 +157,7 @@ class App extends Component {
 
   isSubscriptionActive = async (subscriptionOwner, offerIndex) => {
     let offerContractInstance = await this.getContractInstance(EntityOfferRegistry, this.state.registryAddress);
-    let returnValue = await offerContractInstance.methods.isSubscriptionActive(subscriptionOwner, offerIndex).call({ from: this.state.accounts[0], gasLimit: 10000000 });
+    let returnValue = await offerContractInstance.methods.isSubscriptionActive(subscriptionOwner, offerIndex).call({ from: this.state.accounts[0], gasLimit: 8000000 });
     return returnValue;
   }
 
@@ -216,7 +216,7 @@ class App extends Component {
           this.setState({ registryAddress: evt.returnValues.newEntityOfferRegistry });
         });
       
-      await this.entityRegistryInstance.methods.addEntity().send({ from: this.state.accounts[0], gasLimit: 10000000 });
+      await this.entityRegistryInstance.methods.addEntity().send({ from: this.state.accounts[0], gasLimit: 8000000 });
       // TODO: update account balance after transaction
       // await this.updateAccountBalance();
       // TODO: remove event listener after succesful transaction
@@ -272,7 +272,7 @@ class App extends Component {
           console.log(evt);
         });
       
-      await offerRegistryInstance.methods.withdraw().send({ from: this.state.accounts[0], gasLimit: 10000000 });
+      await offerRegistryInstance.methods.withdraw().send({ from: this.state.accounts[0], gasLimit: 8000000 });
       // TODO: update account balance after transaction
       // await this.updateAccountBalance();
       // TODO: remove event listener after succesful transaction
@@ -285,7 +285,7 @@ class App extends Component {
   updateBaseFee = async (offerIndex, newBaseFee) => {
     let offerRegistryInstance = await this.getContractInstance(EntityOfferRegistry, this.state.registryAddress);
     try {
-      await offerRegistryInstance.methods.setBaseFee(offerIndex, newBaseFee).send({ from: this.state.accounts[0], gasLimit: 10000000 });
+      await offerRegistryInstance.methods.setBaseFee(offerIndex, newBaseFee).send({ from: this.state.accounts[0], gasLimit: 8000000 });
     } catch (err) {
       console.log(err);
     }
@@ -294,7 +294,7 @@ class App extends Component {
   updateMinimumTime = async (offerIndex, newMinimum) => {
     let offerRegistryInstance = await this.getContractInstance(EntityOfferRegistry, this.state.registryAddress);
     try {
-      await offerRegistryInstance.methods.setMinimumSubscriptionTime(offerIndex, newMinimum).send({ from: this.state.accounts[0], gasLimit: 10000000 });
+      await offerRegistryInstance.methods.setMinimumSubscriptionTime(offerIndex, newMinimum).send({ from: this.state.accounts[0], gasLimit: 8000000 });
     } catch (err) {
       console.log(err);
     }
@@ -303,7 +303,7 @@ class App extends Component {
   retireOffer = async (offerIndex) => {
     let offerRegistryInstance = await this.getContractInstance(EntityOfferRegistry, this.state.registryAddress);
     try {
-      await offerRegistryInstance.methods.retireOffer(offerIndex).send({ from: this.state.accounts[0], gasLimit: 10000000 });
+      await offerRegistryInstance.methods.retireOffer(offerIndex).send({ from: this.state.accounts[0], gasLimit: 8000000 });
     } catch (err) {
       console.log(err);
     }
